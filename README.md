@@ -1,6 +1,6 @@
 # InovaStack
 
-InovaStack é um repositório criado para fornecer uma solução integrada para a gestão de infraestrutura e desenvolvimento de aplicações modernas utilizando a tecnologia de containers Docker. Este repositório inclui scripts e arquivos de configuração para a construção, teste e implantação de aplicações em ambientes Docker.
+InovaStack é um repositório desenvolvido para fornecer uma solução integrada para a construção de aplicativos móveis utilizando Framework7 e Apache Cordova, juntamente com JavaScript para simular um back-end. Este repositório inclui o código-fonte necessário para criar, testar e implantar aplicativos móveis híbridos.
 
 ## Índice
 
@@ -14,7 +14,7 @@ InovaStack é um repositório criado para fornecer uma solução integrada para 
 
 ## Visão Geral
 
-InovaStack é uma ferramenta projetada para facilitar o desenvolvimento e a implantação de aplicações containerizadas. Utilizando Docker e outras tecnologias relacionadas, este projeto fornece um ambiente completo para desenvolvedores e engenheiros de DevOps gerenciarem eficientemente suas aplicações.
+InovaStack é uma ferramenta projetada para facilitar o desenvolvimento de aplicativos móveis híbridos. Utilizando Framework7 para a interface do usuário e Apache Cordova para acessar funcionalidades nativas do dispositivo, este projeto oferece um ambiente completo para desenvolvedores criarem aplicativos móveis eficazes e responsivos. Além disso, ele simula um back-end usando JavaScript, permitindo testar a lógica do aplicativo sem a necessidade de um servidor real.
 
 ## Estrutura do Projeto
 
@@ -22,16 +22,16 @@ A estrutura do projeto é organizada da seguinte maneira:
 
 ```
 InovaStack/
-├── docker/
-│   ├── Dockerfile
-│   └── docker-compose.yml
-├── scripts/
-│   ├── build.sh
-│   ├── start.sh
-│   └── stop.sh
-├── src/
-│   ├── app/
-│   └── tests/
+├── www/
+│   ├── css/
+│   ├── js/
+│   ├── index.html
+│   └── ...
+├── hooks/
+├── platforms/
+├── plugins/
+├── res/
+├── config.xml
 ├── .gitignore
 ├── LICENSE
 └── README.md
@@ -39,9 +39,12 @@ InovaStack/
 
 ### Descrição dos Diretórios e Arquivos
 
-- **docker/**: Contém os arquivos Dockerfile e docker-compose.yml para a construção e orquestração dos containers.
-- **scripts/**: Scripts de automação para construir, iniciar e parar os containers Docker.
-- **src/**: Diretório principal para o código-fonte da aplicação e testes.
+- **www/**: Contém o código-fonte do aplicativo, incluindo HTML, CSS e JavaScript.
+- **hooks/**: Scripts personalizados para o Apache Cordova.
+- **platforms/**: Plataformas de destino (Android, iOS, etc.) geradas pelo Cordova.
+- **plugins/**: Plugins Cordova utilizados no projeto.
+- **res/**: Recursos como ícones e splash screens.
+- **config.xml**: Arquivo de configuração principal do Cordova.
 - **.gitignore**: Arquivo para especificar quais arquivos e diretórios devem ser ignorados pelo Git.
 - **LICENSE**: Arquivo de licença do projeto.
 - **README.md**: Este arquivo de documentação.
@@ -50,8 +53,8 @@ InovaStack/
 
 Antes de começar, certifique-se de ter os seguintes softwares instalados em sua máquina:
 
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
+- [Node.js](https://nodejs.org/)
+- [Apache Cordova](https://cordova.apache.org/)
 - [Git](https://git-scm.com/)
 
 ## Instalação
@@ -70,35 +73,47 @@ Siga os passos abaixo para clonar e configurar o repositório InovaStack:
    cd InovaStack
    ```
 
+3. Instale as dependências do Cordova:
+
+   ```bash
+   npm install -g cordova
+   ```
+
+4. Adicione a plataforma desejada (por exemplo, Android):
+
+   ```bash
+   cordova platform add android
+   ```
+
 ## Uso
 
-### Construção dos Containers
+### Construção do Aplicativo
 
-Para construir os containers Docker, execute o script de construção:
-
-```bash
-./scripts/build.sh
-```
-
-### Inicialização dos Containers
-
-Para iniciar os containers Docker, execute o script de inicialização:
+Para construir o aplicativo para a plataforma adicionada, execute o comando:
 
 ```bash
-./scripts/start.sh
+cordova build android
 ```
 
-### Parada dos Containers
+### Execução do Aplicativo
 
-Para parar os containers Docker, execute o script de parada:
+Para executar o aplicativo em um dispositivo ou emulador, utilize o comando:
 
 ```bash
-./scripts/stop.sh
+cordova run android
 ```
 
-### Acesso à Aplicação
+### Desenvolvimento com Simulação de Back-End
 
-Depois de iniciar os containers, a aplicação estará disponível no navegador web no endereço `http://localhost:8000`.
+O projeto inclui JavaScript para simular um back-end. Você pode editar os arquivos em `www/js/` para ajustar a lógica do back-end conforme necessário. Use o navegador para testar a interface do usuário:
+
+1. Navegue até o diretório `www`:
+
+   ```bash
+   cd www
+   ```
+
+2. Abra `index.html` em um navegador web para visualizar e testar a interface do usuário.
 
 ## Contribuição
 
